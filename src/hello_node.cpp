@@ -2,7 +2,6 @@
 #include <functional>
 #include <memory>
 #include <string>
-
 #include "rclcpp/rclcpp.hpp"
 
 using namespace std::chrono_literals;
@@ -47,3 +46,4 @@ int main(int argc, char * argv[])
   rclcpp::shutdown();
   return 0;
 }
+
