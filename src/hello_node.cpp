@@ -1,5 +1,7 @@
 #include <chrono>
+#include <functional>
 #include <memory>
+#include <string>
 
 #include "rclcpp/rclcpp.hpp"
 
@@ -8,17 +10,21 @@ using namespace std::chrono_literals;
 class HelloNode : public rclcpp::Node
 {
 public:
-  HelloNode() : Node("hello_world_node")
+  HelloNode()
+  : Node("hello_world_node")
   {
     timer_ = this->create_wall_timer(
       1000ms,
-      [this]() {
-        RCLCPP_INFO(this->get_logger(), "Hello, World!");
-      }
+      std::bind(&HelloNode::timer_callback, this)
     );
   }
 
 private:
+  void timer_callback()
+  {
+    RCLCPP_INFO(this->get_logger(), "Hello, World!");
+  }
+
   rclcpp::TimerBase::SharedPtr timer_;
 };
 
