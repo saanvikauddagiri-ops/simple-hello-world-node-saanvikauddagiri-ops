@@ -1,41 +1,11 @@
-#include <chrono>
-#include <functional>
-#include <memory>
-#include <string>
-
-#include "rclcpp/rclcpp.hpp"
+#include <rclcpp/rclcpp.hpp>
 #include <iostream>
-
-using namespace std::chrono_literals;
-
-class HelloNode : public rclcpp::Node
-{
-public:
-  HelloNode()
-  : Node("hello_world_node")
-  {
-    timer_ = this->create_wall_timer(
-      1000ms,
-      std::bind(&HelloNode::timer_callback, this)
-    );
-  }
-
-private:
-
-  void timer_callback()
-  {
-    RCLCPP_INFO(this->get_logger(), "Hello, World!");
-  }
-
- 
-
-  rclcpp::TimerBase::SharedPtr timer_;
-};
 
 int main(int argc, char * argv[])
 {
   rclcpp::init(argc, argv);
-  rclcpp::spin(std::make_shared<HelloNode>());
+  std::cout << "Hello, World!" << std::endl;
   rclcpp::shutdown();
   return 0;
 }
+
