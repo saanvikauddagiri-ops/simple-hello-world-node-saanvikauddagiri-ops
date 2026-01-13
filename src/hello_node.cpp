@@ -8,8 +8,8 @@ int main(int argc, char * argv[])
 
   RCLCPP_INFO(node->get_logger(), "Hello, World!");
 
+  rclcpp::spin_some(node);
+
   rclcpp::shutdown();
   return 0;
 }
-}
-
