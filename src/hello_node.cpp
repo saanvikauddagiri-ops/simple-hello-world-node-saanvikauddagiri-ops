@@ -1,14 +1,13 @@
-#include "rclcpp/rclcpp.hpp"
+#include <rclcpp/rclcpp.hpp>
+#include <iostream>
 
 int main(int argc, char * argv[])
 {
   rclcpp::init(argc, argv);
 
-  auto node = rclcpp::Node::make_shared("hello_world_node");
-  RCLCPP_INFO(node->get_logger(), "Hello, World!");
+  std::cout << "Hello, World!" << std::endl;
 
   rclcpp::shutdown();
   return 0;
 }
-
 
