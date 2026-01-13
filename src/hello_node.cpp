@@ -1,19 +1,14 @@
-#include <rclcpp/rclcpp.hpp>
-
-class HelloNode : public rclcpp::Node
-{
-public:
-  HelloNode() : Node("hello_world_node")
-  {
-    RCLCPP_INFO(this->get_logger(), "Hello, World!");
-  }
-};
+#include "rclcpp/rclcpp.hpp"
 
 int main(int argc, char * argv[])
 {
   rclcpp::init(argc, argv);
-  rclcpp::spin_some(std::make_shared<HelloNode>());
+
+  auto node = rclcpp::Node::make_shared("hello_world_node");
+  RCLCPP_INFO(node->get_logger(), "Hello, World!");
+
   rclcpp::shutdown();
   return 0;
 }
+
 
